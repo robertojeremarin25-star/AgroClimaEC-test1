@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>Resultado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <footer class="autor">
+  <small>
+    © 2025 – Analizador Climático de Arroz 
+    <br>
+    Proyecto desarrollado por <strong>Roberto Marín</strong>
+  </small>
+</footer>
+ <div class="logo2">
+    🌾 <span>AgroClima EC</span>
+     </div>
+
+
+<div class="resultado-card">
+
+  <h2>📊 Resultado del análisis</h2>
+
+  <p>
+    📍 <span id="provincia"></span>, <span id="canton"></span>
+  </p>
+
+  <p>
+    🌾 <span id="tipoSiembra"></span> | 📈 <span id="etapa"></span>
+  </p>
+
+  <div class="clima">
+    <p>🌡️ <span id="temp"></span> °C</p>
+    <p>💧 <span id="humedad"></span> %</p>
+    <p>🌧️ <span id="lluvia"></span></p>
+  </div>
+
+  <!-- ===== SEMÁFORO VISUAL ===== -->
+  <div id="semaforo" class="semaforo">
+    <h2 id="estadoCultivo">Estado del cultivo</h2>
+    <p id="explicacionEstado"></p>
+  </div>
+
+  <h3>⚠️ Alertas</h3>
+  <ul id="alertas"></ul>
+
+  <h3>✅ Recomendaciones</h3>
+  <ul id="recomendaciones"></ul>
+
+  <button onclick="window.location.href='index.html'">
+    🔄 Nuevo análisis
+  </button>
+
+</div>
+
+<div class="proximamente">
+  <h3>🚧 Próximamente</h3>
+  <ul>
+    <li>Historial de análisis climáticos</li>
+    <li>Alertas tempranas por condiciones climáticas adversas</li>
+    <li>Seguimiento del estado del cultivo</li>
+    <li>Integración futura con sensores agrícolas</li>
+  </ul>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
+
