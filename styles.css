@@ -1,15 +1,17 @@
-/*Pantalla principal*/
+/* ===================== */
+/* ESTILOS GENERALES */
+/* ===================== */
 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #2ecc71, #27ae60);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
+
+/* ===================== */
+/* PANTALLA PRINCIPAL */
+/* ===================== */
 
 .container {
     background: white;
@@ -18,6 +20,7 @@ body {
     text-align: center;
     width: 90%;
     max-width: 400px;
+    margin: 80px auto;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
@@ -31,7 +34,8 @@ body {
     font-size: 15px;
     margin-bottom: 25px;
 }
-/*botones*/
+
+/* BOTONES */
 button {
     background-color: #27ae60;
     color: white;
@@ -45,7 +49,8 @@ button {
 button:hover {
     background-color: #219150;
 }
-/*tarjetas de selección*/
+
+/* TARJETAS */
 .card {
     border: 2px solid #27ae60;
     border-radius: 10px;
@@ -67,15 +72,13 @@ button:hover {
 .resultado {
     min-height: 100vh;
     padding: 40px 20px;
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
 }
 
-/* LOGO RESULTADO */
+/* LOGO */
 .logo2 {
     font-size: 42px;
     font-weight: bold;
@@ -86,7 +89,7 @@ button:hover {
     text-align: center;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* TARJETA PRINCIPAL */
 .resultado-card {
     background: white;
     width: 100%;
@@ -96,7 +99,12 @@ button:hover {
     box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
-/* ESTADO */
+.resultado-card h2,
+.resultado-card h3 {
+    color: #2c3e50;
+}
+
+/* ESTADO DEL CULTIVO */
 .estado {
     padding: 16px;
     border-radius: 10px;
@@ -124,21 +132,7 @@ button:hover {
     border: 2px solid #e74c3c;
 }
 
-/* ALERTAS Y RECOMENDACIONES */
-.alertas,
-.recomendaciones {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.alertas h3 {
-    color: #c0392b;
-}
-
-.recomendaciones h3 {
-    color: #27ae60;
-}
-
+/* LISTAS */
 ul {
     padding-left: 20px;
 }
@@ -161,38 +155,26 @@ li {
 
 /* FOOTER */
 .autor {
-    margin-top: 20px;
     font-size: 12px;
     color: rgba(255,255,255,0.9);
     text-align: center;
 }
+
+/* ===================== */
+/* RESPONSIVE CELULAR */
+/* ===================== */
+
 @media (max-width: 768px) {
-    .main {
-        flex-direction: column;
-    }
-
-    .left {
-        width: 100%;
-        height: 180px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .right {
-        width: 100%;
-        padding: 15px;
-    }
 
     .logo2 {
-        font-size: 32px;
-        text-align: center;
+        font-size: 30px;
     }
 
     .resultado-card {
-        margin: 0;
         padding: 15px;
     }
+
+    .proximamente {
+        font-size: 12px;
+    }
 }
-
-
