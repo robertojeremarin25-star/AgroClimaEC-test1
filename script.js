@@ -100,6 +100,7 @@ if (window.location.pathname.includes("resultado.html")) {
         let estado = "verde";
         let alertas = [];
         let recomendaciones = [];
+        let razones = [];
 
         const t = clima.temperatura;
         const h = clima.humedad;
@@ -111,6 +112,8 @@ if (window.location.pathname.includes("resultado.html")) {
                 estado = "rojo";
                 alertas.push("Temperatura muy baja para germinación");
                 recomendaciones.push("Esperar mejores condiciones térmicas");
+                razones.push(`Temperatura crítica: ${t}°C`);
+
             } else if (t < 20) {
                 estado = "amarillo";
                 alertas.push("Temperatura límite para germinación");
@@ -120,6 +123,8 @@ if (window.location.pathname.includes("resultado.html")) {
                 estado = "amarillo";
                 alertas.push("Humedad insuficiente");
                 recomendaciones.push("Mantener suelo húmedo");
+                razones.push(`Humedad baja: ${h}%`);
+
             }
         }
 
@@ -174,8 +179,15 @@ if (window.location.pathname.includes("resultado.html")) {
             recomendaciones.push("Controlar nivel de lámina de agua");
         }
 
-        return { estado, alertas, recomendaciones };
+        return { estado, alertas, recomendaciones, razones };
+        
     }
+    // ===== EXPLICACIÓN DEL SEMÁFORO =====
+const explicacion = {
+    verde: "El cultivo se encuentra en condiciones adecuadas.",
+    amarillo: "Existen factores que requieren atención.",
+    rojo: "Las condiciones actuales pueden afectar el rendimiento."
+}
 
     // ===== EJECUCIÓN FINAL =====
     obtenerClima(canton).then(clima => {
@@ -187,46 +199,24 @@ if (window.location.pathname.includes("resultado.html")) {
 
         const resultado = analizarClima(clima, etapa, tipo);
 
-        // TEXTO ESTADO
         const estadoDiv = document.getElementById("estadoCultivo");
         estadoDiv.textContent = `Estado del cultivo: ${resultado.estado.toUpperCase()}`;
-        estadoDiv.className = resultado.estado;
+        estadoDiv.classList.remove("verde", "amarillo", "rojo");
+        estadoDiv.classList.add(resultado.estado);
 
-        // SEMÁFORO VISUAL
-        const semaforo = document.getElementById("semaforo");
         const explicacionP = document.getElementById("explicacionEstado");
+        explicacionP.innerHTML = resultado.razones.length > 0
+            ? "📌 <strong>Motivos:</strong><br>" + resultado.razones.join("<br>")
+            : explicacion[resultado.estado];
 
-        semaforo.className = `semaforo ${resultado.estado}`;
-        explicacionP.textContent = explicacion[resultado.estado];
-
-        // ALERTAS
         const alertasUl = document.getElementById("alertas");
-        alertasUl.innerHTML = "";
-        resultado.alertas.length === 0
-            ? alertasUl.innerHTML = "<li>Sin alertas</li>"
-            : resultado.alertas.forEach(a => {
-                const li = document.createElement("li");
-                li.textContent = a;
-                alertasUl.appendChild(li);
-            });
+        alertasUl.innerHTML = resultado.alertas.length
+            ? resultado.alertas.map(a => `<li>${a}</li>`).join("")
+            : "<li>Sin alertas</li>";
 
-        // RECOMENDACIONES
         const recoUl = document.getElementById("recomendaciones");
-        recoUl.innerHTML = "";
-        resultado.recomendaciones.length === 0
-            ? recoUl.innerHTML = "<li>Sin recomendaciones</li>"
-            : resultado.recomendaciones.forEach(r => {
-                const li = document.createElement("li");
-                li.textContent = r;
-                recoUl.appendChild(li);
-            });
+        recoUl.innerHTML = resultado.recomendaciones.length
+            ? resultado.recomendaciones.map(r => `<li>${r}</li>`).join("")
+            : "<li>Sin recomendaciones</li>";
     });
 }
-
-// ===== EXPLICACIÓN DEL SEMÁFORO =====
-const explicacion = {
-    verde: "El cultivo se encuentra en condiciones adecuadas.",
-    amarillo: "Existen factores que requieren atención.",
-    rojo: "Las condiciones actuales pueden afectar el rendimiento."
-};
-
