@@ -79,6 +79,16 @@ button:hover {
 }
 
 /* LOGO */
+.logo {
+    margin-left: 770px;
+    font-size: 42px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
 .logo2 {
     font-size: 42px;
     font-weight: bold;
@@ -143,6 +153,7 @@ li {
 
 /* PROXIMAMENTE */
 .proximamente {
+    margin-top: 5px;
     width: 100%;
     max-width: 650px;
     background: rgba(255, 255, 255, 0.95);
